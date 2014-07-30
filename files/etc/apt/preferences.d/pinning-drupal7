@@ -3,6 +3,10 @@ Pin: release a=stable
 Pin-Priority: 900
 
 Package: *
+Pin: release a=wheezy-updates
+Pin-Priority: 990
+
+Package: *
 Pin: release a=testing
 Pin-Priority: 500
 
