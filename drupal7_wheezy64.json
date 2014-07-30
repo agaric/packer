@@ -50,6 +50,10 @@
 		"destination": "/etc/inputrc"
 	}, {
 		"type": "file",
+		"source": "files/etc/php5/apache2/php.ini",
+		"destination": "/etc/php5/apache2/php.ini"
+	}, {
+		"type": "file",
 		"source": "files/etc/php5/mods-available/xdebug.ini",
 		"destination": "/etc/php5/mods-available/xdebug.ini"
 	}, {
