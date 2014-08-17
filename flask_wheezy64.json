@@ -31,7 +31,7 @@
 	}],
 	"provisioners": [{
 		"type": "file",
-		"source": "files/etc/apt/preferences.d/pinning-flask",
+		"source": "files/etc/apt/preferences.d/pinning",
 		"destination": "/etc/apt/preferences.d/pinning"
 	}, {
 		"type": "file",

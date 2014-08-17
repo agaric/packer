@@ -10,10 +10,11 @@ apt-get -y install \
 	less \
 	linux-headers-amd64 \
 	pep8 \
-	python-flask \
-	python-sqlalchemy \
 	python-sqlite \
 	sudo \
 	vim-nox \
 	wget
+apt-get -y -t testing install \
+	python-flask \
+	python-sqlalchemy
 apt-get -y clean

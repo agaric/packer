@@ -7,7 +7,6 @@ apt-get -y install \
         build-essential \
 	curl \
 	dkms \
-	drush \
 	git \
 	less \
 	libapache2-mod-php5 \
@@ -22,4 +21,5 @@ apt-get -y install \
 	sudo \
 	vim-nox \
 	wget
+apt-get -y -t testing install drush
 apt-get -y clean

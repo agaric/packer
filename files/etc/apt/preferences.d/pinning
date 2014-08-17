@@ -9,11 +9,3 @@ Pin-Priority: 990
 Package: *
 Pin: release a=testing
 Pin-Priority: 500
-
-Package: python-flask 
-Pin: release a=testing
-Pin-Priority: 990
-
-Package: python-sqlalchemy 
-Pin: release a=testing
-Pin-Priority: 990
