@@ -80,6 +80,14 @@
 		"source": "files/home/vagrant/.my.cnf",
 		"destination": "/home/vagrant/.my.cnf"
 	}, {
+		"type": "file",
+		"source": "files/etc/postfix/main.cf",
+		"destination": "/etc/postfix/main.cf"
+	}, {
+		"type": "file",
+		"source": "files/etc/postfix/canonical-redirect",
+		"destination": "/etc/postfix/canonical-redirect"
+	}, {
 		"type": "shell",
 		"script": "provision-mycnf.sh"
 	}, {
