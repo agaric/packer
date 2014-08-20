@@ -1,0 +1,52 @@
+{
+	"builders": [{
+		"type": "virtualbox-iso",
+		"guest_os_type": "Debian_64",
+		"guest_additions_mode": "upload",
+		"disk_size": 10000,
+		"iso_url": "http://cdimage.debian.org/debian-cd/7.6.0/amd64/iso-cd/debian-7.6.0-amd64-netinst.iso",
+		"iso_checksum": "8a3c2ad7fd7a9c4c7e9bcb5cae38c135",
+		"iso_checksum_type": "md5",
+		"ssh_username": "root",
+		"ssh_password": "vagrant",
+		"ssh_wait_timeout": "480s",
+		"http_directory": "http",
+		"boot_command": [
+			"<esc><wait>",
+			"install <wait>",
+			"preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+			"debian-installer=en_US <wait>",
+			"auto <wait>",
+			"locale=en_US <wait>",
+			"kbd-chooser/method=us <wait>",
+			"netcfg/get_hostname={{ .Name }} <wait>",
+			"netcfg/get_domain=vagrantup.com <wait>",
+			"fb=false <wait>",
+			"debconf/frontend=noninteractive <wait>",
+			"console-setup/ask_detect=false <wait>",
+			"console-keymaps-at/keymap=us <wait>",
+			"<enter><wait5><enter>"
+		],
+		"shutdown_command": "echo 'packer' | shutdown -P -h now"
+	}],
+	"provisioners": [{
+		"type": "shell",
+		"script": "provision-basic.sh"
+	}, {
+		"type": "shell",
+		"script": "provision-guest-additions.sh"
+	}, {
+		"type": "shell",
+		"script": "provision-sudo.sh"
+	}, {
+		"type": "shell",
+		"script": "provision-vagrant-key.sh"
+	}, {
+		"type": "shell",
+		"script": "provision-zerofree.sh"
+	}],
+	"post-processors": [{
+		"type": "vagrant",
+		"compression_level": 1
+	}]
+}
