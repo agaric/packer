@@ -31,8 +31,12 @@
 	}],
 	"provisioners": [{
 		"type": "file",
-		"source": "files/etc/apt/preferences.d/pinning",
-		"destination": "/etc/apt/preferences.d/pinning"
+		"source": "files/etc/apt/preferences.d/pinning-default",
+		"destination": "/etc/apt/preferences.d/pinning-default"
+	}, {
+		"type": "file",
+		"source": "files/etc/apt/preferences.d/pinning-drush",
+		"destination": "/etc/apt/preferences.d/pinning-drush"
 	}, {
 		"type": "file",
 		"source": "files/etc/apt/sources.list.d/backports.list",

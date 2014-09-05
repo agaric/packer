@@ -31,8 +31,16 @@
 	}],
 	"provisioners": [{
 		"type": "file",
-		"source": "files/etc/apt/preferences.d/pinning",
-		"destination": "/etc/apt/preferences.d/pinning"
+		"source": "files/etc/apt/preferences.d/pinning-default",
+		"destination": "/etc/apt/preferences.d/pinning-default"
+	}, {
+		"type": "file",
+		"source": "files/etc/apt/preferences.d/pinning-flask",
+		"destination": "/etc/apt/preferences.d/pinning-flask"
+	}, {
+		"type": "file",
+		"source": "files/etc/apt/preferences.d/pinning-sqlalchemy",
+		"destination": "/etc/apt/preferences.d/pinning-slqalchemy"
 	}, {
 		"type": "file",
 		"source": "files/etc/apt/sources.list.d/backports.list",

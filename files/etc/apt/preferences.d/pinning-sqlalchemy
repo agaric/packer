@@ -1,0 +1,3 @@
+Package: python-sqlalchemy
+Pin: release a=testing
+Pin-Priority: 990

@@ -1,0 +1,3 @@
+Package: python-flask
+Pin: release a=testing
+Pin-Priority: 990
