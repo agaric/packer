@@ -44,6 +44,14 @@
 	}, {
 		"type": "shell",
 		"script": "provision-zerofree.sh"
+	}, {
+		"type": "file",
+		"source": "files/etc/inputrc",
+		"destination": "/etc/inputrc"
+	}, {
+		"type": "file",
+		"source": "files/etc/vim/vimrc",
+		"destination": "/etc/vim/vimrc"
 	}],
 	"post-processors": [{
 		"type": "vagrant",
