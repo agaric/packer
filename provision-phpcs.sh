@@ -9,3 +9,5 @@ if [ ! -d $DRUPAL_STANDARD_DIR ]; then
 	cp -r coder/coder_sniffer/Drupal $DRUPAL_STANDARD_DIR
 	rm -r coder
 fi
+
+phpcs --config-set default_standard Drupal
