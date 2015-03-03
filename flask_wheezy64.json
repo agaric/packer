@@ -61,6 +61,16 @@
 		"source": "files/etc/vim/vimrc",
 		"destination": "/etc/vim/vimrc"
 	}, {
+                "type": "file",
+                "source": "files/etc/postfix/main.cf",
+                "destination": "/etc/postfix/main.cf",
+                "only": ["virtualbox-iso"]
+        }, {
+                "type": "file",
+                "source": "files/etc/postfix/canonical-redirect",
+                "destination": "/etc/postfix/canonical-redirect",
+                "only": ["virtualbox-iso"]
+	}, {
 		"type": "shell",
 		"script": "provision-guest-additions.sh"
 	}, {
