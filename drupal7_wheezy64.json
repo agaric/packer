@@ -30,22 +30,6 @@
 		"shutdown_command": "echo 'packer' | shutdown -P -h now"
 	}],
 	"provisioners": [{
-		"type": "file",
-		"source": "files/etc/apt/preferences.d/pinning-default",
-		"destination": "/etc/apt/preferences.d/pinning-default"
-	}, {
-		"type": "file",
-		"source": "files/etc/apt/preferences.d/pinning-drush",
-		"destination": "/etc/apt/preferences.d/pinning-drush"
-	}, {
-		"type": "file",
-		"source": "files/etc/apt/sources.list.d/backports.list",
-		"destination": "/etc/apt/sources.list.d/backports.list"
-	}, {
-		"type": "file",
-		"source": "files/etc/apt/sources.list.d/testing.list",
-		"destination": "/etc/apt/sources.list.d/testing.list"
-	}, {
 		"type": "shell",
 		"script": "provision-drupal7.sh"
 	}, {
