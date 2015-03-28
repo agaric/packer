@@ -4,9 +4,7 @@ apt-get update
 apt-get -y upgrade
 apt-get -y install \
 	bash-completion \
-        build-essential \
 	curl \
-	dkms \
 	drush \
 	git \
 	less \
