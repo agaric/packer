@@ -35,7 +35,9 @@
 	"destination": "/tmp"
     }, {
 	"type": "shell",
-	"script": "provision-basic.sh",
+	"scripts": [
+            "provision-basic.sh"
+        ],
 	"override": {
 	    "virtualbox-iso": {
 		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
@@ -43,31 +45,13 @@
 	}
     }, {
 	"type": "shell",
-	"script": "provision-guest-additions.sh",
-	"override": {
-	    "virtualbox-iso": {
-		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
-	    }
-	}
-    }, {
-	"type": "shell",
-	"script": "provision-sudo.sh",
-	"override": {
-	    "virtualbox-iso": {
-		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
-	    }
-	}
-    }, {
-	"type": "shell",
-	"script": "provision-vagrant-key.sh",
-	"override": {
-	    "virtualbox-iso": {
-		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
-	    }
-	}
-    }, {
-	"type": "shell",
-	"script": "provision-zerofree.sh",
+	"scripts": [
+            "provision-guest-additions.sh",
+            "provision-sudo.sh",
+            "provision-vagrant-key.sh",
+            "provision-zerofree.sh"
+        ],
+        "only": ["virtualbox-iso"],
 	"override": {
 	    "virtualbox-iso": {
 		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
