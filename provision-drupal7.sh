@@ -20,4 +20,3 @@ apt-get -y install \
 	sudo \
 	vim-nox \
 	wget
-apt-get -y clean
