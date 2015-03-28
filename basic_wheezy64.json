@@ -7,7 +7,7 @@
 		"iso_url": "http://cdimage.debian.org/debian-cd/7.8.0/amd64/iso-cd/debian-7.8.0-amd64-netinst.iso",
 		"iso_checksum": "a91fba5001cf0fbccb44a7ae38c63b6e",
 		"iso_checksum_type": "md5",
-		"ssh_username": "root",
+		"ssh_username": "vagrant",
 		"ssh_password": "vagrant",
 		"ssh_wait_timeout": "480s",
 		"http_directory": "http",
@@ -27,31 +27,52 @@
 			"console-keymaps-at/keymap=us <wait>",
 			"<enter><wait5><enter>"
 		],
-		"shutdown_command": "echo 'packer' | shutdown -P -h now"
+		"shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
 	}],
 	"provisioners": [{
-		"type": "shell",
-		"script": "provision-basic.sh"
-	}, {
-		"type": "shell",
-		"script": "provision-guest-additions.sh"
-	}, {
-		"type": "shell",
-		"script": "provision-sudo.sh"
-	}, {
-		"type": "shell",
-		"script": "provision-vagrant-key.sh"
-	}, {
-		"type": "shell",
-		"script": "provision-zerofree.sh"
-	}, {
 		"type": "file",
-		"source": "files/etc/inputrc",
-		"destination": "/etc/inputrc"
+		"source": "files/etc",
+		"destination": "/tmp"
 	}, {
-		"type": "file",
-		"source": "files/etc/vim/vimrc",
-		"destination": "/etc/vim/vimrc"
+		"type": "shell",
+		"script": "provision-basic.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
+	}, {
+		"type": "shell",
+		"script": "provision-guest-additions.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
+	}, {
+		"type": "shell",
+		"script": "provision-sudo.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
+	}, {
+		"type": "shell",
+		"script": "provision-vagrant-key.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
+	}, {
+		"type": "shell",
+		"script": "provision-zerofree.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
 	}],
 	"post-processors": [{
 		"type": "vagrant",

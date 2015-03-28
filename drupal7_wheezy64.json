@@ -7,7 +7,7 @@
 		"iso_url": "http://cdimage.debian.org/debian-cd/7.8.0/amd64/iso-cd/debian-7.8.0-amd64-netinst.iso",
 		"iso_checksum": "a91fba5001cf0fbccb44a7ae38c63b6e",
 		"iso_checksum_type": "md5",
-		"ssh_username": "root",
+		"ssh_username": "vagrant",
 		"ssh_password": "vagrant",
 		"ssh_wait_timeout": "480s",
 		"http_directory": "http",
@@ -27,52 +27,92 @@
 			"console-keymaps-at/keymap=us <wait>",
 			"<enter><wait5><enter>"
 		],
-		"shutdown_command": "echo 'packer' | shutdown -P -h now"
+		"shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
 	}],
 	"provisioners": [{
-		"type": "shell",
-		"script": "provision-drupal7.sh"
-	}, {
 		"type": "file",
-		"source": "files/etc/inputrc",
-		"destination": "/etc/inputrc"
-	}, {
-		"type": "file",
-		"source": "files/etc/php5/conf.d/80-packer.ini",
-		"destination": "/etc/php5/conf.d/80-packer.ini"
-	}, {
-		"type": "file",
-		"source": "files/etc/vim/vimrc",
-		"destination": "/etc/vim/vimrc"
+		"source": "files/etc",
+		"destination": "/tmp"
 	}, {
 		"type": "shell",
-		"script": "provision-guest-additions.sh"
+		"script": "provision-drupal7.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
 	}, {
 		"type": "shell",
-		"script": "provision-sudo.sh"
+		"script": "provision-guest-additions.sh",
+		"only": ["virtualbox-iso"],
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
 	}, {
 		"type": "shell",
-		"script": "provision-vagrant-key.sh"
+		"script": "provision-sudo.sh",
+		"only": ["virtualbox-iso"],
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
 	}, {
 		"type": "shell",
-		"script": "provision-mod-rewrite.sh"
+		"script": "provision-postfix.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
 	}, {
 		"type": "shell",
-		"script": "provision-phpcs.sh"
-	}, {
-		"type": "file",
-		"source": "files/etc/postfix/main.cf",
-		"destination": "/etc/postfix/main.cf"
-	}, {
-		"type": "file",
-		"source": "files/etc/postfix/canonical-redirect",
-		"destination": "/etc/postfix/canonical-redirect"
+		"script": "provision-vagrant-key.sh",
+		"only": ["virtualbox-iso"],
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
 	}, {
 		"type": "shell",
-		"script": "provision-zerofree.sh"
+		"script": "provision-mod-rewrite.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
+	}, {
+		"type": "shell",
+		"script": "provision-php.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
+	}, {
+		"type": "shell",
+		"script": "provision-phpcs.sh",
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
+	}, {
+		"type": "shell",
+		"script": "provision-zerofree.sh",
+		"only": ["virtualbox-iso"],
+		"override": {
+			"virtualbox-iso": {
+				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+			}
+		}
 	}],
 	"post-processors": [{
 		"type": "vagrant",
-		"compression_level": 1
+		"compression_level": 1,
+		"only": ["virtualbox-iso"]
 	}]
 }

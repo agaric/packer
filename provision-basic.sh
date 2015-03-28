@@ -12,3 +12,5 @@ apt-get -y install \
 	sudo \
 	wget
 apt-get -y clean
+cp /tmp/etc/inputrc /etc/inputrc
+cp /tmp/etc/vim/vimrc /etc/vim/vimrc
