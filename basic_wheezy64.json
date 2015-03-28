@@ -1,81 +1,81 @@
 {
-	"builders": [{
-		"type": "virtualbox-iso",
-		"guest_os_type": "Debian_64",
-		"guest_additions_mode": "upload",
-		"disk_size": 10000,
-		"iso_url": "http://cdimage.debian.org/debian-cd/7.8.0/amd64/iso-cd/debian-7.8.0-amd64-netinst.iso",
-		"iso_checksum": "a91fba5001cf0fbccb44a7ae38c63b6e",
-		"iso_checksum_type": "md5",
-		"ssh_username": "vagrant",
-		"ssh_password": "vagrant",
-		"ssh_wait_timeout": "480s",
-		"http_directory": "http",
-		"boot_command": [
-			"<esc><wait>",
-			"install <wait>",
-			"preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
-			"debian-installer=en_US <wait>",
-			"auto <wait>",
-			"locale=en_US <wait>",
-			"kbd-chooser/method=us <wait>",
-			"netcfg/get_hostname={{ .Name }} <wait>",
-			"netcfg/get_domain=vagrantup.com <wait>",
-			"fb=false <wait>",
-			"debconf/frontend=noninteractive <wait>",
-			"console-setup/ask_detect=false <wait>",
-			"console-keymaps-at/keymap=us <wait>",
-			"<enter><wait5><enter>"
-		],
-		"shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
-	}],
-	"provisioners": [{
-		"type": "file",
-		"source": "files/etc",
-		"destination": "/tmp"
-	}, {
-		"type": "shell",
-		"script": "provision-basic.sh",
-		"override": {
-			"virtualbox-iso": {
-				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
-			}
-		}
-	}, {
-		"type": "shell",
-		"script": "provision-guest-additions.sh",
-		"override": {
-			"virtualbox-iso": {
-				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
-			}
-		}
-	}, {
-		"type": "shell",
-		"script": "provision-sudo.sh",
-		"override": {
-			"virtualbox-iso": {
-				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
-			}
-		}
-	}, {
-		"type": "shell",
-		"script": "provision-vagrant-key.sh",
-		"override": {
-			"virtualbox-iso": {
-				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
-			}
-		}
-	}, {
-		"type": "shell",
-		"script": "provision-zerofree.sh",
-		"override": {
-			"virtualbox-iso": {
-				"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
-			}
-		}
-	}],
-	"post-processors": [{
-		"type": "vagrant",
-		"compression_level": 1
-	}]
+    "builders": [{
+	"type": "virtualbox-iso",
+	"guest_os_type": "Debian_64",
+	"guest_additions_mode": "upload",
+	"disk_size": 10000,
+	"iso_url": "http://cdimage.debian.org/debian-cd/7.8.0/amd64/iso-cd/debian-7.8.0-amd64-netinst.iso",
+	"iso_checksum": "a91fba5001cf0fbccb44a7ae38c63b6e",
+	"iso_checksum_type": "md5",
+	"ssh_username": "vagrant",
+	"ssh_password": "vagrant",
+	"ssh_wait_timeout": "480s",
+	"http_directory": "http",
+	"boot_command": [
+	    "<esc><wait>",
+	    "install <wait>",
+	    "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+	    "debian-installer=en_US <wait>",
+	    "auto <wait>",
+	    "locale=en_US <wait>",
+	    "kbd-chooser/method=us <wait>",
+	    "netcfg/get_hostname={{ .Name }} <wait>",
+	    "netcfg/get_domain=vagrantup.com <wait>",
+	    "fb=false <wait>",
+	    "debconf/frontend=noninteractive <wait>",
+	    "console-setup/ask_detect=false <wait>",
+	    "console-keymaps-at/keymap=us <wait>",
+	    "<enter><wait5><enter>"
+	],
+	"shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
+    }],
+    "provisioners": [{
+	"type": "file",
+	"source": "files/etc",
+	"destination": "/tmp"
+    }, {
+	"type": "shell",
+	"script": "provision-basic.sh",
+	"override": {
+	    "virtualbox-iso": {
+		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+	    }
+	}
+    }, {
+	"type": "shell",
+	"script": "provision-guest-additions.sh",
+	"override": {
+	    "virtualbox-iso": {
+		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+	    }
+	}
+    }, {
+	"type": "shell",
+	"script": "provision-sudo.sh",
+	"override": {
+	    "virtualbox-iso": {
+		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+	    }
+	}
+    }, {
+	"type": "shell",
+	"script": "provision-vagrant-key.sh",
+	"override": {
+	    "virtualbox-iso": {
+		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+	    }
+	}
+    }, {
+	"type": "shell",
+	"script": "provision-zerofree.sh",
+	"override": {
+	    "virtualbox-iso": {
+		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+	    }
+	}
+    }],
+    "post-processors": [{
+	"type": "vagrant",
+	"compression_level": 1
+    }]
 }
