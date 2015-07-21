@@ -36,7 +36,9 @@
     }, {
 	"type": "shell",
 	"scripts": [
-            "provision-basic.sh"
+            "provision-basic.sh",
+            "provision-inputrc.sh",
+            "provision-vimrc.sh"
         ],
 	"override": {
 	    "virtualbox-iso": {
