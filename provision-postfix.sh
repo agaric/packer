@@ -1,2 +1,2 @@
-cp /tmp/etc/postfix/main.cf /etc/postfix/main.cf
+postconf canonical_maps=regexp:/etc/postfix/canonical-redirect
 cp /tmp/etc/postfix/canonical-redirect /etc/postfix/canonical-redirect
