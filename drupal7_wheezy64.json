@@ -40,7 +40,7 @@
             "provision-inputrc-wheezy.sh",
             "provision-vimrc-wheezy.sh",
             "provision-mod-rewrite.sh",
-            "provision-php.sh",
+            "provision-php-wheezy.sh",
             "provision-phpcs.sh",
             "provision-postfix.sh"
         ],
