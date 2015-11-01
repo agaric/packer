@@ -37,6 +37,8 @@
 	"type": "shell",
 	"scripts": [
             "provision-basic.sh"
+            "provision-inputrc-wheezy.sh",
+            "provision-vimrc-wheezy.sh"
         ],
 	"override": {
 	    "virtualbox-iso": {

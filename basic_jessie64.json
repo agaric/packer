@@ -37,8 +37,8 @@
 	"type": "shell",
 	"scripts": [
             "provision-basic.sh",
-            "provision-inputrc.sh",
-            "provision-vimrc.sh"
+            "provision-inputrc-jessie.sh",
+            "provision-vimrc-jessie.sh"
         ],
 	"override": {
 	    "virtualbox-iso": {

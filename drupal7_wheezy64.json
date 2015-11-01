@@ -37,6 +37,8 @@
 	"type": "shell",
 	"scripts": [
             "provision-drupal7.sh",
+            "provision-inputrc-wheezy.sh",
+            "provision-vimrc-wheezy.sh",
             "provision-mod-rewrite.sh",
             "provision-php.sh",
             "provision-phpcs.sh",
