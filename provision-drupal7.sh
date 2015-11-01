@@ -16,7 +16,6 @@ apt-get -y install \
 	php5-gd \
 	php5-mysql \
 	php5-xdebug \
-	phpunit \
 	sudo \
 	vim-nox \
 	wget
