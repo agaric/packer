@@ -1,0 +1,71 @@
+{
+    "builders": [{
+	"type": "virtualbox-iso",
+	"guest_os_type": "Debian_64",
+	"guest_additions_mode": "upload",
+	"disk_size": 10000,
+	"iso_url": "http://cdimage.debian.org/debian-cd/8.2.0/amd64/iso-cd/debian-8.2.0-amd64-netinst.iso",
+	"iso_checksum": "762eb3dfc22f85faf659001ebf270b4f",
+	"iso_checksum_type": "md5",
+	"ssh_username": "vagrant",
+	"ssh_password": "vagrant",
+	"ssh_wait_timeout": "480s",
+	"http_directory": "http",
+	"boot_command": [
+	    "<esc><wait>",
+	    "install <wait>",
+	    "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+	    "debian-installer=en_US <wait>",
+	    "auto <wait>",
+	    "locale=en_US <wait>",
+	    "kbd-chooser/method=us <wait>",
+	    "netcfg/get_hostname={{ .Name }} <wait>",
+	    "netcfg/get_domain=vagrantup.com <wait>",
+	    "fb=false <wait>",
+	    "debconf/frontend=noninteractive <wait>",
+	    "console-setup/ask_detect=false <wait>",
+	    "console-keymaps-at/keymap=us <wait>",
+	    "<enter><wait5><enter>"
+	],
+	"shutdown_command": "echo 'vagrant' | sudo -S shutdown -P -h now"
+    }],
+    "provisioners": [{
+	"type": "file",
+	"source": "files/etc",
+	"destination": "/tmp"
+    }, {
+	"type": "shell",
+	"scripts": [
+            "provision-drupal7.sh",
+            "provision-inputrc-jessie.sh",
+            "provision-vimrc-jessie.sh",
+            "provision-mod-rewrite.sh",
+            "provision-php-jessie.sh",
+            "provision-postfix.sh"
+        ],
+	"override": {
+	    "virtualbox-iso": {
+		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+	    }
+	}
+    }, {
+	"type": "shell",
+	"scripts": [
+            "provision-guest-additions.sh",
+            "provision-sudo.sh",
+            "provision-vagrant-key.sh",
+            "provision-zerofree.sh"
+        ],
+	"only": ["virtualbox-iso"],
+	"override": {
+	    "virtualbox-iso": {
+		"execute_command": "echo 'vagrant' | sudo -S bash {{.Path}}"
+	    }
+	}
+    }],
+    "post-processors": [{
+	"type": "vagrant",
+	"compression_level": 1,
+	"only": ["virtualbox-iso"]
+    }]
+}
